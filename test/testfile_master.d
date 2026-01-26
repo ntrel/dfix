@@ -55,6 +55,10 @@ alias CONTEXT* PCONTEXT, LPCONTEXT;
 alias EXCEPTION_RECORD* PEXCEPTION_RECORD, LPEXCEPTION_RECORD;
 alias EXCEPTION_POINTERS* PEXCEPTION_POINTERS, LPEXCEPTION_POINTERS;
 
+alias uint text_encoding_t, fsobj_type_t, fsobj_tag_t, fsfile_type_t, fsvolid_t, attrgroup_t;
+
+static foreach (alias field; S.tupleof) {}
+
 void foo() { "abc%s" "def%s".format("123", "456"); }
 void bar() { "ghi".writeln(); }
 
