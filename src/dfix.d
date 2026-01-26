@@ -558,6 +558,13 @@ void upgradeFile(string fileName, bool dip64, bool dip65, bool dip1003)
 
 				i = beforeEnd;
 				skipWhitespace(output, tokens, i, false);
+				// E.g. `static foreach (alias field;`
+				if (!tokens[i].text.length)
+				{
+					output.writeToken(tokens[beforeStart]);
+					output.write(";");
+					break;
+				}
 
 				output.writeToken(tokens[i]);
 				output.write(" = ");
