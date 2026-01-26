@@ -574,12 +574,9 @@ void upgradeFile(string fileName, bool dip64, bool dip65, bool dip1003)
 				if (multipleAliases)
 				{
 					i++; // previous name token
-					for (;; i++)
+					skipWhitespace(output, tokens, i, false);
+					for (; tokens[i] == tok!",";)
 					{
-						skipWhitespace(output, tokens, i, false);
-						if (tokens[i] != tok!",")
-							break;
-
 						i++; // ,
 						output.write(", ");
 						skipWhitespace(output, tokens, i, false);
@@ -588,8 +585,13 @@ void upgradeFile(string fileName, bool dip64, bool dip65, bool dip1003)
 						foreach (l; beforeStart .. beforeEnd)
 							output.writeToken(tokens[l]);
 
-						if (tokens[i + 1] == tok!";")
+						i++; // name token
+						skipWhitespace(output, tokens, i, false);
+						if (tokens[i] == tok!";")
+						{
+							i--;
 							break;
+						}
 					}
 				}
 			}

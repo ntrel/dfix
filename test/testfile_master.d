@@ -57,6 +57,9 @@ alias EXCEPTION_POINTERS* PEXCEPTION_POINTERS, LPEXCEPTION_POINTERS;
 
 alias uint text_encoding_t, fsobj_type_t, fsobj_tag_t, fsfile_type_t, fsvolid_t, attrgroup_t;
 
+alias TCHAR*        PTCH , PTBYTE, LPTCH , PTSTR , LPTSTR , LP, PTCHAR;
+alias const(TCHAR)* PCTCH,         LPCTCH, PCTSTR, LPCTSTR            ;
+
 static foreach (alias field; S.tupleof) {}
 
 void foo() { "abc%s" "def%s".format("123", "456"); }
